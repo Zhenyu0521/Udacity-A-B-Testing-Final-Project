@@ -4,9 +4,9 @@
 
 - [1. Experiment Overview: Free Trial Screener](#1-experiment-overview)
 - [2. Choosing Metrics](#2-choosing-metrics)
-  - [2.1 Choosing Invariant Metrics](#2.1-invariant-metrics)
-  - [2.2 Choosing Variant Metrics](#2.2-variant-metrics)
-  - [2.3 Measuring Variability](#2.3-measuring-variability)
+  - [2.1 Choosing Invariant Metrics](#21-invariant-metrics)
+  - [2.2 Choosing Variant Metrics](#22-variant-metrics)
+  - [2.3 Measuring Variability](#23-measuring-variability)
 - [3. Designing Experiment]()
   - [3.1 Sizing - Number of Pageviews]()
   - [3.2 Duration and Exposure]()
