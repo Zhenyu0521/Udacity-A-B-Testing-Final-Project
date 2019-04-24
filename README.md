@@ -2,7 +2,7 @@
 
 ---
 
-- [1. Experiment Overview: Free Trial Screener]()
+- [1. Experiment Overview: Free Trial Screener](#1-experiment-overview)
 - [2. Choosing Metrics]()
   - [2.1 Choosing Invariant Metrics]()
   - [2.2 Choosing Variant Metrics]()
