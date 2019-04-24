@@ -3,10 +3,10 @@
 ---
 
 - [1. Experiment Overview: Free Trial Screener](#1-experiment-overview)
-- [2. Choosing Metrics]()
-  - [2.1 Choosing Invariant Metrics]()
-  - [2.2 Choosing Variant Metrics]()
-  - [2.3 Measuring Variability]()
+- [2. Choosing Metrics](#2-choosing metrics)
+  - [2.1 Choosing Invariant Metrics](#2.1-invariant-metrics)
+  - [2.2 Choosing Variant Metrics](#2.2-variant-metrics)
+  - [2.3 Measuring Variability](#2.3-measuring-variability)
 - [3. Designing Experiment]()
   - [3.1 Sizing - Number of Pageviews]()
   - [3.2 Duration and Exposure]()
@@ -31,6 +31,19 @@ The hypothesis was that this might set clearer expectations for students upfront
 
 The unit of diversion is a cookie, although if the student enrolls in the free trial, they are tracked by user-id from that point forward. The same user-id cannot enroll in the free trial twice. For users that do not enroll, their user-id is not tracked in the experiment, even if they were signed in when they visited the course overview page.
 
+## 2. Choosing Metrics
 
-  
+### 2.1 Invariant Metrics
+
+* **Number of cookies:** number of unique cookies to view the course overview page.
+* **Number of clicks:** number of unique cookies to click the "Start free trial" button (which happens before the free trial screener is trigger).
+* **Click-through-probability:** number of unique cookies to click the "Start free trial" button divided by number of unique cookies to view the course overview page.
+
+### 2.2 Variant Metrics
+
+* **Gross conversion:** number of user-ids to complete checkout and enroll in the free trial divided by number of unique cookies to click the "Start free trial" button.
+* **Retention:** number of user-ids to remain enrolled past the 14-day boundary (andthus make at least one payment) divided by number of user-ids to complete checkout.
+* **Net conversion:** number of user-ids to remain enrolled past the 14-dayboundary (and thus make at least one payment) divided by the number of unique cookies to click the "Start free trial" button.
+
+### 2.3 Measuing Variability  
 
