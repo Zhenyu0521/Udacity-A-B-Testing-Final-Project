@@ -47,3 +47,20 @@ The unit of diversion is a cookie, although if the student enrolls in the free t
 
 ### 2.3 Measuing Variability  
 
+```python
+# Given a sample size of 5000 cookies
+baseline = {'Cookies': 5000,
+            'Click': 400,
+            'Enrollment': 82.5,
+            'CTP': 0.08,
+            'GC': 0.20625,
+            'R': 0.53,
+            'NC': 0.1093125}
+
+std_GC = np.sqrt(baseline['GC']*(1-baseline['GC'])/baseline['Click'])
+std_R  = np.sqrt(baseline['R']*(1-baseline['R'])/baseline['Enrollment'])
+std_NC = np.sqrt(baseline['NC']*(1-baseline['NC'])/baseline['Click'])
+print("The standard variability of gross conversion is {}, retention is {}, and net conversion is {}".format(std_GC, std_R, std_NC))
+```
+
+The standard variability of gross conversion is 0.0202, retention is 0.0549, and net conversion is 0.0156.
