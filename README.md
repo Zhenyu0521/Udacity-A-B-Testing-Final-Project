@@ -12,9 +12,9 @@
   - [3.2 Duration and Exposure](#32-duration-and-exposure)
 - [4. Analyzing Results](#4-analyzing-results)
   - [4.1 Sanity Checks](#41-sanity-checks)
-   - [4.1.1 Pageviews](#411-pageviews)
-   - [4.1.2 Clicks](#412-clicks)
-   - [4.1.3 Click-through-probability](#413-click-through-probability)
+    - [4.1.1 Pageviews](#411-pageviews)
+    - [4.1.2 Clicks](#412-clicks)
+    - [4.1.3 Click-through-probability](#413-click-through-probability)
   - [4.2 Effect Size Tests](#42-effect-size-tests)
   - [4.3 Sign Test](#43-sign-test)
   
