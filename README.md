@@ -21,7 +21,7 @@
   - [4.3 Sign Test](#43-sign-test)
     - [4.3.1 Gross conversion](#431-gross-conversion)
     - [4.3.2 Net conversion](#432-net-conversion)
-- [5. Conclusion](#5-conclusion)
+- [5.Conclusion](#5-conclusion)
   
   
 ---
@@ -112,7 +112,7 @@ Also, we do not want to expose all our traffic to this experiment, because the e
 
 Before our final tests, we need to perform a sanity check to make our invariant metrics are equivalent between the two groups, since the changes we make will not affect those metrics.
 
-#### 4.1.1 Pageviws
+#### 4.1.1 Pageviews
 
 ```python
 pageviews_control = control.Pageviews.sum()
@@ -256,7 +256,7 @@ p_nc_sign
 
 The results of sign tests are consistent with statistical and practical significance tests. The change in gross conversion is indeed siginificant while the change in net conversion is not.
 
-## Conclusion
+## 5. Conclusion
 
 Based on the result, I would not launch this change. Because the change in net conversion is not significant, which means though gross conversion is reduces while it does not change net conversion. Also, further experiments need to be performed to test other metrics.
 
