@@ -15,10 +15,13 @@
     - [4.1.1 Pageviews](#411-pageviews)
     - [4.1.2 Clicks](#412-clicks)
     - [4.1.3 Click-through-probability](#413-click-through-probability)
-  - [4.2 Effect Size Tests](#42-effect-size-tests)
+  - [4.2 Check for Statistical and Practical Significance](#42-check-for-statistical-and-practical-significance)
     - [4.2.1 Gross conversion](#421-gross-conversion)
     - [4.2.2 Net conversion](#422-net-conversion)
   - [4.3 Sign Test](#43-sign-test)
+    - [4.3.1 Gross conversion](#431-gross-conversion)
+    - [4.3.2 Net conversion](#432-net-conversion)
+- [5. Conclusion](#5-conclusion)
   
   
 ---
@@ -162,7 +165,7 @@ p_value is 0.4659, which is larger than 0.05. Therefore, we cannot reject the nu
 
 Thus, our experiment passes the sanity check. We can move forward and start testing the effect of the changes we make.
 
-### 4.2 Effect Size Tests
+### 4.2 Check for Statistical and Practical Significance
 
 #### 4.2.1 Gross conversion
 
@@ -221,4 +224,40 @@ ci_nc
 The p-value of net conversion is 0.0779, which is larger than 0.05. Therefore, we cannot reject the null hypothesis and the difference between two groups is not statistically significant. The confidence interval is (-0.0116, 0.0019) and it does not contain the minimum detectable difference (0.0075), which means it's not practically significant. Thus, for net conversion, the difference is not statistically and practically significant.
 
 ### 4.3 Sign Test
+
+```python
+c_t = control.merge(treatment, left_index=True, right_index=True)
+c_t = c_t.loc[c_t.Payments_x.notnull(),:]
+c_t['GC'] = c_t['Enrollments_y']/c_t['Clicks_y'] > c_t['Enrollments_x']/c_t['Clicks_x']
+c_t['NC'] = c_t['Payments_y']/c_t['Clicks_y'] > c_t['Payments_x']/c_t['Clicks_x']
+
+def sign_test(x, n):
+    def binomial(x, n):
+        return comb(n,x)*0.5**n
+    p = 0
+    for i in range(x+1):
+        p = p + binomial(i, n)
+    return p
+```
+
+#### 4.3.1 Gross conversion
+
+```python
+p_gc_sign = 2 * sign_test(c_t['GC'].sum(), c_t['GC'].count())
+p_gc_sign
+```
+
+#### 4.3.2 Net conversion
+
+```python
+p_nc_sign = 2 * sign_test(c_t['NC'].sum(), c_t['NC'].count())
+p_nc_sign
+```
+
+The results of sign tests are consistent with statistical and practical significance tests. The change in gross conversion is indeed siginificant while the change in net conversion is not.
+
+## Conclusion
+
+Based on the result, I would not launch this change. Because the change in net conversion is not significant, which means though gross conversion is reduces while it does not change net conversion. Also, further experiments need to be performed to test other metrics.
+
 
