@@ -16,7 +16,10 @@
     - [4.1.2 Clicks](#412-clicks)
     - [4.1.3 Click-through-probability](#413-click-through-probability)
   - [4.2 Effect Size Tests](#42-effect-size-tests)
+    - [4.2.1 Gross conversion](#421-gross-conversion)
+    - [4.2.2 Net conversion](#422-net-conversion)
   - [4.3 Sign Test](#43-sign-test)
+  
   
 ---
 
@@ -161,6 +164,61 @@ Thus, our experiment passes the sanity check. We can move forward and start test
 
 ### 4.2 Effect Size Tests
 
+#### 4.2.1 Gross conversion
 
+```python
+# Numbers of enrollments in two groups
+enroll_control   = control.Enrollments.sum()
+enroll_treatment = treatment.Enrollments.sum()
+# Nubmers of clicks in two groups
+click_control = control.loc[control.Enrollments.notnull(), 'Clicks'].sum()
+click_treatment= treatment.loc[treatment.Enrollments.notnull(), 'Clicks'].sum()
+# Gross conversion of two groups
+gc_control   = enroll_control/click_control
+gc_treatment = enroll_treatment/click_treatment
+# p_value
+gc_diff   = gc_treatment - gc_control
+gc_pooled = (enroll_control + enroll_treatment)/(click_control + click_treatment)
+gc_sd     = np.sqrt(gc_pooled*(1-gc_pooled)*(1/click_control + 1/click_treatment))
+stand_gc  = gc_diff/gc_sd
+p_gc      = stats.norm.cdf(stand_gc)
+p_gc
+```
+
+```python
+ci_gc = [gc_diff-stats.norm.ppf(1-0.05/2)*gc_sd, gc_diff+stats.norm.ppf(1-0.05/2)*gc_sd]
+ci_gc
+```
+
+The p-value of difference between the control and treatment groups is 1.2892005168602965e-06, which is smaller than 0.05. Therefor the difference is statistically significant. And the minimum detectable difference of gross conversion (0.01) is in the range of confidence intervals (-0.0291, -0.0120), which means the difference is also practically significant. Thus, we can say the screener does effectively reduce the number of students who enrolled at the initial click.
+
+#### 4.2.2 Net conversion
+
+```python
+# Numbers of payments in two groups
+pay_control   = control.Payments.sum()
+pay_treatment = treatment.Payments.sum()
+# Nubmers of clicks in two groups
+click_control = control.loc[control.Payments.notnull(), 'Clicks'].sum()
+click_treatment= treatment.loc[treatment.Payments.notnull(), 'Clicks'].sum()
+# Net conversion of two groups
+nc_control   = pay_control/click_control
+nc_treatment = pay_treatment/click_treatment
+# p_value
+nc_diff   = nc_treatment - nc_control
+nc_pooled = (pay_control + pay_treatment)/(click_control + click_treatment)
+nc_sd     = np.sqrt(nc_pooled*(1-nc_pooled)*(1/click_control + 1/click_treatment))
+stand_nc  = nc_diff/nc_sd
+p_nc      = stats.norm.cdf(stand_nc)
+p_nc
+```
+
+```python
+ci_nc = [nc_diff-stats.norm.ppf(1-0.05/2)*nc_sd, nc_diff+stats.norm.ppf(1-0.05/2)*nc_sd]
+ci_nc
+```
+
+The p-value of net conversion is 0.0779, which is larger than 0.05. Therefore, we cannot reject the null hypothesis and the difference between two groups is not statistically significant. The confidence interval is (-0.0116, 0.0019) and it does not contain the minimum detectable difference (0.0075), which means it's not practically significant. Thus, for net conversion, the difference is not statistically and practically significant.
 
 ### 4.3 Sign Test
+
