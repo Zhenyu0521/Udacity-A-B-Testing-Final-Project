@@ -8,7 +8,7 @@
   - [2.2 Choosing Variant Metrics](#22-variant-metrics)
   - [2.3 Measuring Variability](#23-measuring-variability)
 - [3. Designing Experiment](#3-designing-experiment)
-  - [3.1 Sizing - Number of Pageviews](#31-sizing-number-of-pageviews)
+  - [3.1 Sizing - Number of Cookies](#31-sizing-number-of-cookies)
   - [3.2 Duration and Exposure](#32-duration-and-exposure)
 - [4. Analyzing Results](#4-analyzing-results)
   - [4.1 Sanity Checks](#41-sanity-checks)
