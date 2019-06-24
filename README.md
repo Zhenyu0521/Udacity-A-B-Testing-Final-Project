@@ -8,7 +8,7 @@
   - [2.2 Choosing Variant Metrics](#22-variant-metrics)
   - [2.3 Measuring Variability](#23-measuring-variability)
 - [3. Designing Experiment](#3-designing-experiment)
-  - [3.1 Sizing - Number of Cookies](#31-sizing-number-of-cookies)
+  - [3.1 Sizing - Number of Cookies](#31-sizing---number-of-cookies)
   - [3.2 Duration and Exposure](#32-duration-and-exposure)
 - [4. Analyzing Results](#4-analyzing-results)
   - [4.1 Sanity Checks](#41-sanity-checks)
@@ -82,7 +82,7 @@ During the process of designing experiment, we need to determine how many sample
 
 ### 3.1 Sizing - Number of Cookies
 
-Sample size is generally related to significance level, type II error, baseline conversion, practical significance and so. And the [Online_Sample_Size_Calculator](http://www.evanmiller.org/ab-testing/sample-size.html) is a convenient method to calculate the sample size. alpha = 0.5, beta = 0.2
+Sample size is generally related to significance level, type II error, baseline conversion, practical significance and so. And the [Online_Sample_Size_Calculator](http://www.evanmiller.org/ab-testing/sample-size.html) is a convenient method to calculate the sample size. alpha = 0.05, beta = 0.2
 
 ```python
 index   = ['GC', 'R', 'NC']
